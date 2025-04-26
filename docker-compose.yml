@@ -1,5 +1,3 @@
-version: '3.9'
-
 services: #informações dos documentos retirados do Docker Hub
   db: #o nome de sua escolha, que sera o banco de dados
     image: postgres
@@ -21,4 +19,5 @@ services: #informações dos documentos retirados do Docker Hub
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
     ports:
       - '15432:80'
-    depends_on: db #Depende do que? para usar o cliente tem que subir o DB
+    depends_on:
+      - db #Depende do que? para usar o cliente tem que subir o DB

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/imagelite
+    username: postgres
+    password: postgres
+  jpa:
+    database: POSTGRESQL
+    hibernate: #facilita a interação entre objetos da linguagem Java e tabelas de banco de dados
+      ddl-auto: update
+    show-sql: true #toda vez que executar, vai demonstrar em log
