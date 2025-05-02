@@ -26,6 +26,7 @@ import java.util.List;
 public class ImagesController {
 
     private final ImageService service;
+    private final ImageMapper mapper;
 
     private static final Logger log = LoggerFactory.getLogger(ImagesController.class);
 
@@ -39,14 +40,10 @@ public class ImagesController {
                                 ) throws IOException {
         log.info("Imagem recebida: name:{},size:{}",file.getOriginalFilename(),file.getSize());
 
-        Image image = Image.builder()
-                .name(name)
-                .tags(String.join(",",tags))
-                .size(file.getSize())
-                .extesion(ImageExtension.valueOf(MediaType.valueOf(file.getContentType())))
-                .file(file.getBytes())
-                .build();
-        service.save(image);
+        Image image = mapper.mapToImage(file,name,tags);
+        Image savedImage = service.save(image);
+
+        
 
         return ResponseEntity.ok().build(); //Classe responsavel para dar uma resposta HTTP se for ok
         //codigo 200 quer dizer ok
